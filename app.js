@@ -20,9 +20,8 @@ dbconnect.dbconnect()
 
 app.use(morgan('dev'))
 
-
-app.use("/api/admin", adminRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.listen(PORT,()=>{
     console.log(`server is running  on http://localhost:${PORT}`);
