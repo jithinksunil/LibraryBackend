@@ -1,11 +1,12 @@
 const express=require('express')
-import {Register }from '../controllers/userController'
-const userRoute=express.Router()
+const {Register,Login,updateprofile}=require('../controllers/userController')
+const userRoutes=express.Router()
 
 
-userRoute.post('/',Register)
+userRoutes.post('/register',Register)
+userRoutes.post('/login',Login)
+userRoutes.put('/update/:id',updateprofile)
 
 
 
-
-export default userRoute;
+module.exports =  userRoutes;

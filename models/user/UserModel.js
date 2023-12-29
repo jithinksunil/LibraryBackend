@@ -5,6 +5,11 @@ const userSchema=new mongoose.Schema({
         required:true,
         unique:true,
     },
+    name:{
+        type:String,
+        required:true,
+        
+    },
     email:{
         type:String,
         required:true,
@@ -18,7 +23,6 @@ const userSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
-    books:[{type:mongoose.Types.ObjectId,ref:"Book",required:true}]
 },{timestamps:true})
 
 module.exports=mongoose.model('User',userSchema)

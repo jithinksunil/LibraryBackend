@@ -1,11 +1,10 @@
 const express=require('express')
-import {Register }from '../controllers/adminController'
-const adminRoute=express.Router()
+const {Login,Register,updateAdmin }=require('../controllers/adminController') 
+const adminRoutes=express.Router()
 
+adminRoutes.post('/register',Register)
+adminRoutes.post('/login',Login)
 
-adminRoute.post('/',Register)
+adminRoutes.put('/update/:id',updateAdmin)
 
-
-
-
-export default adminRoute;
+module.exports = adminRoutes;

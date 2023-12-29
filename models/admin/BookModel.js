@@ -14,10 +14,9 @@ image:{
 available:{
     type:Boolean
 },
-user: {
-    type: mongoose.Types.ObjectId,
-    ref: 'User',
-    required: true,
+userId: {
+    type:String,
+    required:true
   },
 category:{
     type:Array

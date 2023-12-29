@@ -4,11 +4,12 @@ const mongoose=require('mongoose')
 const morgan=require('morgan')
 const cors=require('cors')
 const dotenv=require('dotenv')
-
+const adminRoutes=require('./routes/adminRoute')
+const userRoutes=require('./routes/userRoute')
 const dbconnect=require('./config/connection')
 
 
-const PORT=process.env.PORT || 8080;
+const PORT=process.env.PORT;
 dotenv.config()
 
 
@@ -20,6 +21,8 @@ dbconnect.dbconnect()
 app.use(morgan('dev'))
 
 
+app.use("/api/admin", adminRoutes);
+app.use("/api/user", userRoutes);
 
 app.listen(PORT,()=>{
     console.log(`server is running  on http://localhost:${PORT}`);
