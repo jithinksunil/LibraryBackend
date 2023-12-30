@@ -16,7 +16,7 @@ const bookOrderSchema = new mongoose.Schema({
     default: function () {
    
       const currentDate = new Date();
-      return new Date(currentDate.setDate(currentDate.getDate() + 30));
+      return new Date(currentDate.setDate(currentDate.getDate() + 10));
     },
   },
   transactionType: {

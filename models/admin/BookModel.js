@@ -14,10 +14,11 @@ type:String,
 },
 image:{
     type:String,
-   
+    required:true,
 },
 available:{
-    type:String
+type:Boolean,
+default:true
 },
 category:{
     type:String
