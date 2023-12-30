@@ -1,10 +1,10 @@
 const express=require('express')
-// const {Register,Login,updateprofile}=require('../controllers/userController')
+const {userRegister,userLogin}=require('../controllers/userController')
 const userRoutes=express.Router()
 
 
-// userRoutes.post('/register',Register)
-// userRoutes.post('/login',Login)
+userRoutes.post('/register',userRegister)
+userRoutes.post('/login',userLogin)
 // userRoutes.put('/update/:id',updateprofile)
 
 
