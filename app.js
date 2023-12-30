@@ -17,12 +17,13 @@ dotenv.config()
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-dbconnect.dbconnect()
 
+dbconnect.dbconnect()
+app.use(cors())
 app.use(morgan('dev'))
 
 app.use("/api/user", userRoutes);
-// app.use("/api/admin", adminRoutes);
+app.use("/api/admin", adminRoutes);
  app.use("/api/book", bookRoute);
 
 

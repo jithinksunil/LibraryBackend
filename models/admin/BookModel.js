@@ -4,6 +4,11 @@ name:{
     type:String,
     required:true
 },
+ISBN:{
+type:String,
+required:true,
+unique:true
+},
 author:{
 type:String,
 },

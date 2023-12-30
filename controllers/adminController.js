@@ -4,8 +4,9 @@ const Admin = require("../models/admin/AdminModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-//Register admin
+//REGISTER ADMIN
 const AdminRegister = async (req, res, next) => {
+  console.log(req.body)
  try {
     const isExisting=await Admin.findOne({email:req.body.email})
     if(isExisting){
@@ -13,6 +14,7 @@ const AdminRegister = async (req, res, next) => {
     }
     const hashedPassword=await bcrypt.hash(req.body.password,10)
     const newAdmin=await Admin.create({...req.body,password:hashedPassword})
+    console.log(newAdmin)
 
     const{password,...others}=newAdmin._doc;
     res.status(201).json({admin:others})
@@ -22,7 +24,7 @@ const AdminRegister = async (req, res, next) => {
  }
 };
 
-//Login admin
+//LOGIN ADMIN
 const AdminLogin = async (req, res) => {
  try {
   const admin=await Admin.findOne({email:req.body.email})
