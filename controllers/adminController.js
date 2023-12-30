@@ -1,5 +1,6 @@
 
 const Admin = require("../models/admin/AdminModel");
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -40,8 +41,6 @@ const AdminLogin = async (req, res) => {
     return res.status(500).json(error)
  }
 };
-
-
 
 
 

@@ -4,9 +4,9 @@ const mongoose=require('mongoose')
 const morgan=require('morgan')
 const cors=require('cors')
 const dotenv=require('dotenv')
-const adminRoutes=require('./routes/adminRoute')
-const userRoutes=require('./routes/userRoute')
-const bookRoutes=require('./routes/bookRoute')
+const adminRoutes=require('./routes/adminRoute.js')
+const userRoutes=require('./routes/userRoute.js')
+const bookRoute=require('./routes/bookRoute.js')
 const dbconnect=require('./config/connection')
 
 
@@ -22,8 +22,9 @@ dbconnect.dbconnect()
 app.use(morgan('dev'))
 
 app.use("/api/user", userRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/book", bookRoutes);
+// app.use("/api/admin", adminRoutes);
+ app.use("/api/book", bookRoute);
+
 
 app.listen(PORT,()=>{
     console.log(`server is running  on http://localhost:${PORT}`);

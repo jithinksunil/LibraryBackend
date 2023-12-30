@@ -9,17 +9,13 @@ type:String,
 },
 image:{
     type:String,
-    required:true
+   
 },
 available:{
-    type:Boolean
+    type:String
 },
-userId: {
-    type:String,
-    required:true
-  },
 category:{
-    type:Array
+    type:String
 }
 })
 

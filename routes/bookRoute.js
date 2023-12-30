@@ -1,12 +1,11 @@
 const express=require('express')
-const {bookAdd}=require('../controllers/bookController')
-const bookRoutes=express.Router()
 
+const{viewBook,singlebook,AddBook,deleteBook}=require('../controllers/bookController')
+const bookRoute=express.Router()
 
-bookRoutes.post('/addbook',bookAdd)
-// userRoutes.post('/login',userLogin)
-// userRoutes.put('/update/:id',updateprofile)
+bookRoute.get('/findbook/:id',singlebook)
+bookRoute.post('/addbook',AddBook)
+bookRoute.get('/viewbook',viewBook)
+bookRoute.delete('/delete/:id',deleteBook)
 
-
-
-module.exports =  bookRoutes;
+module.exports = bookRoute;
