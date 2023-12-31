@@ -18,7 +18,7 @@ const singlebook = async (req, res) => {
   };
   
   
-
+//ADD BOOK
 const AddBook = async (req, res) => {
   console.log(req.body)
     try {
@@ -29,7 +29,7 @@ const AddBook = async (req, res) => {
     console.log(verify)
     console.log(allbook)
     if (verify) {
-      res.status(201).json({ err: "Book already exist" });
+      return res.status(404).json({ msg: "Book already exist" });
     } else {
       const newBook = new Book({
         name: req.body.name,
@@ -51,7 +51,6 @@ const AddBook = async (req, res) => {
 
   const viewbook=async(req,res)=>{
     try {
-      console.log('mkkk')
         const BooksData=await Book.find({})
 
         console.log(BooksData)
@@ -63,20 +62,21 @@ const AddBook = async (req, res) => {
 }
 
 const deleteBook = async (req, res) => {
-    try {
-      const book = await Book.findById(req.params.id);
-      
-      if (!book) {
-        return res.status(404).json({ msg: "Book not found" });
-      }
-  
-      await book.remove(); 
-      
-      return res.status(200).json({ msg: "Book deleted" });
-    } catch (error) {
-      return res.status(500).json(error);
+  try {
+    console.log('Request received for book deletion. Book ID:', req.params.id);
+
+    const book = await Book.findByIdAndDelete(req.params.id);
+    
+    if (!book) {
+      console.log('Book not found');
+      return res.status(404).json({ msg: "Book not found" });
     }
-  };
+  } catch (error) {
+    console.error('Error deleting book:', error);
+    return res.status(500).json(error);
+  }
+};
+
 
   const searchBook = async (req, res) => {
     const { name } = req.query;
@@ -207,23 +207,34 @@ console.log(existingTransaction)
 }
 
 const viewTransaction = async (req, res) => {
-  const userId = getUserFromToken(req.headers.authorization.split(' ')[1]);
-console.log(userId)
+  console.log(req.user)
+
+const userId=req.user.id
   if (!userId) {
     return res.status(401).json({ error: 'Invalid token' });
   }
 
   try {
-    // Fetch book orders based on the user ID
-    const userOrders = await BookOrder.find({ userId }).populate('bookId');
-
-    res.json({ bookOrders: userOrders });
+  
+    const userOrders = await Transaction.find({ userId }).populate('bookId').populate('userId')
+console.log(userOrders)
+    res.json({ transaction: userOrders });
   } catch (error) {
     console.error('Error fetching transactions:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+const AdminviewTransaction=async(req,res)=>{
+  try {
+    const TransactionData=await Transaction.find({}).populate('bookId').populate('userId')
 
+    console.log(TransactionData)
+    return res.status(200).json(TransactionData)
+} catch (error) {
+    console.error("Error fetching books:", error);
+    res.status(500).json(error) 
+}
+}
 
 module.exports={
-  viewbook,singlebook,AddBook,deleteBook,addcategory,deletecategory,viewcategory,searchBook,addTransaction,viewTransaction}
+  AdminviewTransaction,viewbook,singlebook,AddBook,deleteBook,addcategory,deletecategory,viewcategory,searchBook,addTransaction,viewTransaction}

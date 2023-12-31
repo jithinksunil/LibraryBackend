@@ -5,7 +5,7 @@ const userRoutes=express.Router()
 
 userRoutes.post('/register',userRegister)
 userRoutes.post('/login',userLogin)
-// userRoutes.put('/update/:id',updateprofile)
+
 
 
 
