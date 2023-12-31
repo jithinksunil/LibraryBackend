@@ -206,7 +206,24 @@ console.log(existingTransaction)
   }
 }
 
+const viewTransaction = async (req, res) => {
+  const userId = getUserFromToken(req.headers.authorization.split(' ')[1]);
+console.log(userId)
+  if (!userId) {
+    return res.status(401).json({ error: 'Invalid token' });
+  }
+
+  try {
+    // Fetch book orders based on the user ID
+    const userOrders = await BookOrder.find({ userId }).populate('bookId');
+
+    res.json({ bookOrders: userOrders });
+  } catch (error) {
+    console.error('Error fetching transactions:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 
 module.exports={
-  viewbook,singlebook,AddBook,deleteBook,addcategory,deletecategory,viewcategory,searchBook,addTransaction
-}
+  viewbook,singlebook,AddBook,deleteBook,addcategory,deletecategory,viewcategory,searchBook,addTransaction,viewTransaction}

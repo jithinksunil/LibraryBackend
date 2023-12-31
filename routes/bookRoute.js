@@ -1,7 +1,7 @@
 const express=require('express')
 const bookRoute=express.Router()
 const upload = require('../utility/multer');
-const{viewbook,singlebook,AddBook,deleteBook,addcategory,deletecategory,viewcategory,searchBook,addTransaction}=require('../controllers/bookController')
+const{viewbook,singlebook,viewTransaction,AddBook,deleteBook,addcategory,deletecategory,viewcategory,searchBook,addTransaction}=require('../controllers/bookController')
 
 
 bookRoute.get('/findbook/:id',singlebook)
@@ -16,5 +16,7 @@ bookRoute.get('/viewCategory',viewcategory)
 bookRoute.delete('/deletecategory/:id',deletecategory)
 
 bookRoute.post('/transaction', addTransaction);
+bookRoute.post('/viewtransaction', viewTransaction);
+
 
 module.exports = bookRoute;
