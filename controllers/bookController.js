@@ -105,7 +105,7 @@ const addcategory = async (req, res) => {
     } else {
       const newCategory = new category({
         name: req.body.name,
-        image: req.file.path, // Assuming Multer is configured to store the file path in req.file.path
+        image: req.file.path, 
       });
 
       await newCategory.save();

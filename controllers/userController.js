@@ -20,7 +20,7 @@ const userRegister = async (req, res, next) => {
     }
    };
    
-   //Login admin
+   //Login user
    const userLogin = async (req, res) => {
     try {
      const user=await User.findOne({email:req.body.email})
