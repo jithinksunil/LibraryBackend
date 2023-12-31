@@ -1,6 +1,6 @@
 
 const Admin = require("../models/admin/AdminModel");
-
+const user=require('../models/user/UserModel')
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -45,9 +45,20 @@ const AdminLogin = async (req, res) => {
  }
 };
 
+const userview=async(req,res)=>{
+  try {
+    const userData=await user.find({})
+
+    console.log(userData)
+    return res.status(200).json(userData)
+} catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json(error)
+}
+}
 
 
 
 module.exports={
-    AdminRegister,AdminLogin
+    AdminRegister,AdminLogin,userview
 }
