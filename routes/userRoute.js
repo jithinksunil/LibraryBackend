@@ -6,7 +6,4 @@ const userRoutes=express.Router()
 userRoutes.post('/register',userRegister)
 userRoutes.post('/login',userLogin)
 
-
-
-
 module.exports =  userRoutes;

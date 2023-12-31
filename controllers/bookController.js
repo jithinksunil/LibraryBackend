@@ -80,7 +80,7 @@ const deleteBook = async (req, res) => {
 
   const searchBook = async (req, res) => {
     const { name } = req.query;
-  
+  console.log(name);
     try {
       const searchResults = await Book.find({ name: { $regex: new RegExp(name, 'i') } });
       res.status(200).json(searchResults);
